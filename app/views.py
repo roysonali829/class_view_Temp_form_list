@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,FormView,ListView
 from app.forms import *
 from django.http import HttpResponse
 
@@ -20,3 +20,17 @@ class temp(TemplateView):
         if SFDO.is_valid():
             SFDO.save()
             return HttpResponse('data inserted')
+
+class student_insert_form(FormView):
+    form_class = StudentForm
+    template_name = 'student_insert_form.html'
+    
+    def form_valid(self, form: Any) -> HttpResponse:
+        form.save()
+        return HttpResponse('data inserted')
+
+class display_student(ListView):
+    model = Student
+    template_name = 'display_student.html'
+    context_object_name = 'stlist'
+    ordering = ['Sage']

@@ -24,4 +24,8 @@ urlpatterns = [
     path('temp/',temp.as_view(),name='temp'),
     
     path('temp_by_url/',TemplateView.as_view(template_name='temp_by_url.html'),name='temp_by_url'),
+
+    path('student_insert_form/',student_insert_form.as_view(),name='student_insert_form'),
+
+    path('display_student/',display_student.as_view(),name='display_student'),
 ]
